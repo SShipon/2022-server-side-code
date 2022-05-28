@@ -107,8 +107,8 @@ async function run() {
       const id = req.params.id;
       const query = { _id: ObjectId(id) };
       const cursor = manufacturerCollection.find(query);
-      const sigleProduct = await cursor.toArray();
-      res.send(sigleProduct);
+      const singleProduct = await cursor.toArray();
+      res.send(singleProduct);
     });
 
     app.post("/order/:id", async (req, res) => {
@@ -124,8 +124,8 @@ async function run() {
     });
 
     app.post("/addproduct", async (req, res) => {
-      const newproduct = req.body;
-      const result = await manufacturerCollection.insertOne(newproduct);
+      const newProduct = req.body;
+      const result = await manufacturerCollection.insertOne(newProduct);
       res.send(result);
     });
 
@@ -147,7 +147,7 @@ async function run() {
       res.send({ clientSecret: paymentIntent.client_secret });
     });
 
-    /* app.get("/myprofile/:email", async (req, res) => {
+    app.get("/myprofile/:email", async (req, res) => {
       const email = req.params;
       const cursor = profileCollection.find(email);
       const products = await cursor.toArray();
@@ -156,14 +156,14 @@ async function run() {
 
     app.put("/myprofile/:id", async (req, res) => {
       const id = req.params.id;
-      const updatUser = req.body;
+      const updateUser = req.body;
       const filter = { _id: ObjectId(id) };
       const option = { upsert: true };
       const updateDoc = {
         $set: {
-          education: updatUser.education,
-          city: updatUser.city,
-          phone: updatUser.phone,
+          education: updateUser.education,
+          city: updateUser.city,
+          phone: updateUser.phone,
         },
       };
       const result = await profileCollection.updateOne(
@@ -177,8 +177,8 @@ async function run() {
     app.get("/manageproduct", async (req, res) => {
       const query = {};
       const cursor = manufacturerCollection.find(query);
-      const manageorder = await cursor.toArray();
-      res.send(manageorder);
+      const manageOrder = await cursor.toArray();
+      res.send(manageOrder);
     });
 
     app.get("/review", async (req, res) => {
@@ -227,7 +227,7 @@ async function run() {
       const result = await orderCollection.deleteOne(query);
       res.send(result);
     });
- */
+
     app.delete("/product/:id", async (req, res) => {
       const id = req.params.id;
       const query = { _id: ObjectId(id) };
