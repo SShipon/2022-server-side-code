@@ -171,7 +171,7 @@ async function run() {
      res.send(result);
    });
 
-   // user profile info get api
+   // user profile info get api add code 
    app.get("/profile", verifyJwt, async (req, res) => {
      const email = req.query.email;
      const query = { email: email };
